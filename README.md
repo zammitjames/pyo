@@ -15,19 +15,20 @@ Softwares using pyo as audio engine
 * Soundgrain : A graphical interface where users can draw and edit trajectories to control granular sound synthesis.
 * Cecilia 5 : An audio signal processing environment.
 * PsychoPy : An open-source application to allow the presentation of stimuli and collection of data for a wide range of neuroscience, psychology and psychophysics experiments.
-* 
 
 ##Examples
 pyo is fully integrated to Python and very simple to use.
 
-Play a sound:
-
+* Play a sound:
+```
 >>> from pyo import *
 >>> s = Server().boot()
 >>> s.start()
 >>> sf = SfPlayer("path/to/your/sound.aif", speed=1, loop=True).out()
-Granulate an audio buffer:
+```
 
+* Granulate an audio buffer:
+```
 >>> s = Server().boot()
 >>> s.start()
 >>> snd = SndTable("path/to/your/sound.aif")
@@ -35,8 +36,10 @@ Granulate an audio buffer:
 >>> pos = Phasor(freq=snd.getRate()*.25, mul=snd.getSize())
 >>> dur = Noise(mul=.001, add=.1)
 >>> g = Granulator(snd, env, [1, 1.001], pos, dur, 24, mul=.1).out()
-Generate melodies:
+```
 
+* Generate melodies:
+```
 >>> s = Server().boot()
 >>> s.start()
 >>> wav = SquareTable()
@@ -45,3 +48,4 @@ Generate melodies:
 >>> amp = TrigEnv(met, table=env, mul=.1)
 >>> pit = TrigXnoiseMidi(met, dist='loopseg', x1=20, scale=1, mrange=(48,84))
 >>> out = Osc(table=wav, freq=pit, mul=amp).out()
+```
